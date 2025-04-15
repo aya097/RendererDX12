@@ -1,8 +1,15 @@
-#include <iostream>
+#include "Window/Window.h"
 
-int main()
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
-	std::cout << "Hello World!!";
+	constexpr int width = 1280;
+	constexpr int height = 720;
+	Window window(width, height, L"AAA", L"WINDOW");
+
+	while (!window.IsQuit())
+	{
+
+	}
 
 	return 0;
 }

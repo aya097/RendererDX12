@@ -7,10 +7,21 @@
     <Filter Include="Asset">
       <UniqueIdentifier>{3e5a3055-e575-48b9-9e61-6717027abdcf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Window">
+      <UniqueIdentifier>{38cf9e59-ed92-4f8a-828e-b62054722b0d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\main.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Window\Window.cpp">
+      <Filter>Source\Window</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Source\Window\Window.h">
+      <Filter>Source\Window</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
