@@ -20,9 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\main.cpp" />
+    <ClCompile Include="..\Source\Pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pch.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="..\Source\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\Pch.h" />
     <ClInclude Include="..\Source\Window\Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -111,6 +116,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>Pch.h</ForcedIncludeFiles>
+      <AdditionalIncludeDirectories>.\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

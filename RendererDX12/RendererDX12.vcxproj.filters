@@ -18,10 +18,16 @@
     <ClCompile Include="..\Source\Window\Window.cpp">
       <Filter>Source\Window</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Pch.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\Window\Window.h">
       <Filter>Source\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Pch.h">
+      <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
