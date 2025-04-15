@@ -20,6 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\main.cpp" />
+    <ClCompile Include="..\Source\Window\Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Source\Window\Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -109,7 +113,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
