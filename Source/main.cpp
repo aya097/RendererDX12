@@ -1,8 +1,6 @@
-#include <iostream>
+#include "Window/Window.h"
 
-int main()
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
-	std::cout << "Hello World!!";
 
-	return 0;
 }
