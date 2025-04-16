@@ -4,7 +4,8 @@ GraphicsDevice* g_GraphicsDevice;
 
 GraphicsDevice::GraphicsDevice(HWND hwnd, int width, int height)
 {
-	CreateDevice;
+	CreateDevice();
+	CreateFactory();
 }
 
 
@@ -24,5 +25,16 @@ void GraphicsDevice::CreateDevice()
 		{
 			assert(false && ("CreateDevice is failed"));
 		}
+	}
+}
+
+void GraphicsDevice::CreateFactory()
+{
+	UINT flag = DXGI_CREATE_FACTORY_DEBUG;
+	auto result = CreateDXGIFactory2(flag, IID_PPV_ARGS(&_dxgiFactory));
+
+	if (FAILED(result))
+	{
+		assert(false && "CreateFactory is failed");
 	}
 }

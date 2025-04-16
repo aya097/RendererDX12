@@ -8,12 +8,12 @@ public:
 private:
 	void CreateDevice();
 	void CreateFactory();
-	void CreateCommandList();
-	void CreateSwapChain(HWND hwnd, int width, int height);
-	void CreateFence();
-	void SetBarrierTransition();
-	void WaitRenderer();
-	void EnableDebugLayer();
+	//void CreateCommandList();
+	//void CreateSwapChain(HWND hwnd, int width, int height);
+	//void CreateFence();
+	//void SetBarrierTransition();
+	//void WaitRenderer();
+	//void EnableDebugLayer();
 
 	ComPtr<ID3D12Device9> _device = nullptr;
 	ComPtr<IDXGIFactory7> _dxgiFactory = nullptr;
