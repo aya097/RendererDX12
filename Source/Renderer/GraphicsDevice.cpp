@@ -6,11 +6,15 @@ GraphicsDevice::GraphicsDevice(HWND hwnd, int width, int height)
 {
 #ifdef DEBUG
 	EnableDebugLayer();
-#endif // DEBUG
+#endif
+	_hwnd = hwnd;
+	_screenWidth = width;
+	_screenHeight = height;
 
 	CreateDevice();
 	CreateFactory();
 	CreateCommandObjects();
+	CreateSwapChain();
 }
 
 
@@ -73,6 +77,32 @@ void GraphicsDevice::CreateCommandObjects()
 		assert(false && "CreateCommandQueue is failed");
 	}
 }
+
+void GraphicsDevice::CreateSwapChain()
+{
+	DXGI_SWAP_CHAIN_DESC1 swapChainDesc = {};
+	swapChainDesc.Width = _screenWidth;
+	swapChainDesc.Height = _screenHeight;
+	swapChainDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
+	swapChainDesc.Stereo = false;
+	swapChainDesc.SampleDesc.Count = 1;
+	swapChainDesc.SampleDesc.Quality = 0;
+	swapChainDesc.BufferUsage = DXGI_USAGE_BACK_BUFFER;
+	swapChainDesc.BufferCount = 2;
+	swapChainDesc.Scaling = DXGI_SCALING_STRETCH;
+	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
+	swapChainDesc.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
+	swapChainDesc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
+
+	auto result = _dxgiFactory->CreateSwapChainForHwnd(_commandQueue.Get(), _hwnd, &swapChainDesc, nullptr, nullptr, (IDXGISwapChain1**)_swapChain.GetAddressOf());
+	
+	if (FAILED(result))
+	{
+		assert(false && "CreateSwapChain is failed");
+	}
+}
+
+
 
 void GraphicsDevice::EnableDebugLayer()
 {

@@ -9,11 +9,16 @@ private:
 	void CreateDevice();
 	void CreateFactory();
 	void CreateCommandObjects();
-	//void CreateSwapChain(HWND hwnd, int width, int height);
+	void CreateSwapChain();
 	//void CreateFence();
 	//void SetBarrierTransition();
 	//void WaitRenderer();
 	void EnableDebugLayer();
+
+	HWND _hwnd;
+	int _screenWidth = 0;
+	int _screenHeight = 0;
+
 
 	ComPtr<ID3D12Device9> _device = nullptr;
 	ComPtr<IDXGIFactory7> _dxgiFactory = nullptr;
@@ -21,6 +26,8 @@ private:
 	ComPtr<ID3D12CommandAllocator> _commandAllocator = nullptr;
 	ComPtr<ID3D12GraphicsCommandList7> _commandList = nullptr;
 	ComPtr<ID3D12CommandQueue> _commandQueue = nullptr;
+
+	ComPtr<IDXGISwapChain4> _swapChain = nullptr;
 };
 
 extern GraphicsDevice* g_GraphicsDevice;
