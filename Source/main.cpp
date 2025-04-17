@@ -14,7 +14,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 	while (!window.IsQuit())
 	{
-
+		g_GraphicsDevice->BeginRender();
+		g_GraphicsDevice->EndRender();
 	}
 
 	return 0;

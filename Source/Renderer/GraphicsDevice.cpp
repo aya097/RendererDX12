@@ -15,6 +15,53 @@ GraphicsDevice::GraphicsDevice(HWND hwnd, int width, int height)
 	CreateFactory();
 	CreateCommandObjects();
 	CreateSwapChain();
+	CreateFence();
+}
+
+void GraphicsDevice::BeginRender()
+{
+	auto bbIdx = _swapChain->GetCurrentBackBufferIndex();
+
+	// set barrier
+	SetBarrierTransition(_swapChainBuffers[bbIdx].Get(), D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
+
+	// set RenderTarget
+	auto rtvHandle = _rtvHeap->GetCPUHandleAt(bbIdx);
+	_commandList->OMSetRenderTargets(1, &rtvHandle, false, nullptr);
+
+	// set viewport and scissorrect
+	_commandList->RSSetViewports(1, GetViewport());
+	_commandList->RSSetScissorRects(1, GetScissor());
+
+	// clear RenderTarget
+	_commandList->ClearRenderTargetView(rtvHandle, _backColor, 0, nullptr);
+}
+
+void GraphicsDevice::EndRender()
+{
+	auto bbIdx = _swapChain->GetCurrentBackBufferIndex();
+
+	// set barrier
+	SetBarrierTransition(_swapChainBuffers[bbIdx].Get(), D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
+
+	// execute CommandList
+	_commandList->Close();
+	ID3D12CommandList* _commandLists[] = { _commandList.Get() };
+
+	WaitRenderer();
+
+	// reset CommandAllocator and CommandList
+	_commandAllocator->Reset();
+	_commandList->Reset(_commandAllocator.Get(), nullptr);
+
+	// flip
+	_swapChain->Present(1, 0);
+}
+
+
+void GraphicsDevice::SetBackGroundColor(const std::array<float, 4>& color)
+{
+	std::copy(color.begin(), color.end(), _backColor);
 }
 
 
@@ -117,7 +164,67 @@ void GraphicsDevice::CreateSwapChain()
 	}
 }
 
+void GraphicsDevice::CreateFence()
+{
+	auto result = _device->CreateFence(_fenceValue, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&_fence));
 
+	if (FAILED(result))
+	{
+		assert(false && "Create Fence is failed");
+	}
+}
+
+D3D12_VIEWPORT* GraphicsDevice::GetViewport()
+{
+	D3D12_VIEWPORT viewport = {};
+
+	viewport.Width = _screenWidth;
+	viewport.Height = _screenHeight;
+	viewport.TopLeftX = 0;
+	viewport.TopLeftY = 0;
+	viewport.MaxDepth = 1.0f;
+	viewport.MinDepth = 0.0f;
+
+	return &viewport;
+}
+D3D12_RECT* GraphicsDevice::GetScissor() 
+{
+	D3D12_RECT scissorrect = {};
+	scissorrect.top = 0;
+	scissorrect.left = 0;
+	scissorrect.right = scissorrect.left + _screenWidth;
+	scissorrect.bottom = scissorrect.top + _screenHeight;
+
+	return &scissorrect;
+}
+
+void GraphicsDevice::SetBarrierTransition(ID3D12Resource* resource, D3D12_RESOURCE_STATES before, D3D12_RESOURCE_STATES after)
+{
+	D3D12_RESOURCE_BARRIER barrierDesc = {};
+	barrierDesc.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
+	barrierDesc.Flags = D3D12_RESOURCE_BARRIER_FLAG_NONE;
+	barrierDesc.Transition.pResource = resource;
+	barrierDesc.Transition.Subresource = 0;
+	barrierDesc.Transition.StateBefore = before;
+	barrierDesc.Transition.StateAfter = after;
+	_commandList->ResourceBarrier(1, &barrierDesc);
+}
+
+void GraphicsDevice::WaitRenderer()
+{
+	_commandQueue->Signal(_fence.Get(), ++_fenceValue);
+	if (_fence->GetCompletedValue() != _fenceValue)
+	{
+		auto event = CreateEvent(nullptr, false, false, nullptr);
+		if (!event)
+		{
+			assert(0 && "Create Event is failed");
+		}
+		_fence->SetEventOnCompletion(_fenceValue, event);
+		WaitForSingleObject(event, INFINITE);
+		CloseHandle(event);
+	}
+}
 
 void GraphicsDevice::EnableDebugLayer()
 {
