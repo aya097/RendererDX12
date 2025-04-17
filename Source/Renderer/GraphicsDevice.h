@@ -24,7 +24,7 @@ private:
 	HWND _hwnd;
 	int _screenWidth = 0;
 	int _screenHeight = 0;
-	float _backColor[4] = {0.0f,0.0f,0.0f,1.0f};
+	float _backColor[4] = { 1.0f,1.0f,1.0f,1.0f };
 
 
 	ComPtr<ID3D12Device9> _device = nullptr;

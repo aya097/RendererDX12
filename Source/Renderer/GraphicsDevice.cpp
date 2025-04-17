@@ -46,7 +46,8 @@ void GraphicsDevice::EndRender()
 
 	// execute CommandList
 	_commandList->Close();
-	ID3D12CommandList* _commandLists[] = { _commandList.Get() };
+	ID3D12CommandList* commandLists[] = { _commandList.Get() };
+	_commandQueue->ExecuteCommandLists(1, commandLists);
 
 	WaitRenderer();
 
