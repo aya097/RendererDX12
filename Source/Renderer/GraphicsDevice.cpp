@@ -100,6 +100,21 @@ void GraphicsDevice::CreateSwapChain()
 	{
 		assert(false && "CreateSwapChain is failed");
 	}
+
+
+
+	int heapNum = 2;
+	_rtvHeap = std::make_unique<RTVHeap>(_device.Get(), heapNum);
+
+	for (int index = 0; index < swapChainDesc.BufferCount; index++)
+	{
+		result = _swapChain->GetBuffer(index, IID_PPV_ARGS(&_swapChainBuffers[index]));
+		if (FAILED(result))
+		{
+			assert(false && "Get SwapChainBuffer is failed");
+		}
+		_rtvHeap->RegistRTVHeap(_swapChainBuffers[index].Get(), index);
+	}
 }
 
 

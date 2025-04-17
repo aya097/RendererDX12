@@ -1,4 +1,5 @@
 #pragma once
+#include "Heap/RTVHeap.h"
 
 class GraphicsDevice
 {
@@ -28,6 +29,8 @@ private:
 	ComPtr<ID3D12CommandQueue> _commandQueue = nullptr;
 
 	ComPtr<IDXGISwapChain4> _swapChain = nullptr;
+	std::array<ComPtr<ID3D12Resource>, 2> _swapChainBuffers;
+	std::unique_ptr<RTVHeap> _rtvHeap = nullptr;
 };
 
 extern GraphicsDevice* g_GraphicsDevice;

@@ -25,11 +25,13 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="..\Source\Renderer\GraphicsDevice.cpp" />
+    <ClCompile Include="..\Source\Renderer\Heap\RTVHeap.cpp" />
     <ClCompile Include="..\Source\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\Pch.h" />
     <ClInclude Include="..\Source\Renderer\GraphicsDevice.h" />
+    <ClInclude Include="..\Source\Renderer\Heap\RTVHeap.h" />
     <ClInclude Include="..\Source\Window\Window.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
