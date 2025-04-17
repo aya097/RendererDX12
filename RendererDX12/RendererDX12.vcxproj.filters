@@ -10,6 +10,12 @@
     <Filter Include="Source\Window">
       <UniqueIdentifier>{38cf9e59-ed92-4f8a-828e-b62054722b0d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Renderer">
+      <UniqueIdentifier>{f517900f-3e26-4bf1-b82d-b9462794b5b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Renderer\Heap">
+      <UniqueIdentifier>{963bcfd9-912a-4e8a-9461-e7a25171cf80}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\main.cpp">
@@ -21,6 +27,12 @@
     <ClCompile Include="..\Source\Pch.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Renderer\GraphicsDevice.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Renderer\Heap\RTVHeap.cpp">
+      <Filter>Source\Renderer\Heap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\Window\Window.h">
@@ -28,6 +40,12 @@
     </ClInclude>
     <ClInclude Include="..\Source\Pch.h">
       <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Renderer\GraphicsDevice.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Renderer\Heap\RTVHeap.h">
+      <Filter>Source\Renderer\Heap</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

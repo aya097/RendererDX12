@@ -12,6 +12,9 @@ LRESULT WindowProcedure(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 
 Window::Window(int clientWidth, int clientHeight, const std::wstring& titleName, const std::wstring& windowClassName)
 {
+	_width = clientWidth;
+	_height = clientHeight;
+
 	WNDCLASSEX wndClass = {};
 
 	wndClass.cbSize = sizeof(WNDCLASSEX);
