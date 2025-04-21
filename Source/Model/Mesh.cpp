@@ -35,7 +35,26 @@ Mesh::Mesh(const std::vector<XMFLOAT3>& vertices)
 		assert(false && "Create vertex buffer is failed");
 	}
 
+	// 頂点バッファをマップ
+	XMFLOAT3* vertMap = nullptr;
 
+	// バッファの仮想アドレスを取得
+	result = _vertexBuffer->Map(
+		0,		// ミップマップ
+		nullptr,	//範囲指定、今回はしないのでnullptr
+		(void**)&vertMap	// 受け取るポインタ
+	);
 
+	if (FAILED(result))
+	{
+		assert(false && "Map vertex buffer is failed");
+	}
+	
+	std::copy(std::begin(vertices), std::end(vertices), vertMap);
+	_vertexBuffer->Unmap(0, nullptr);	// 仮想アドレス解除
 
+	// 頂点ビュー
+	_vertexBufferView.BufferLocation = _vertexBuffer->GetGPUVirtualAddress();	// バッファの仮想アドレス
+	_vertexBufferView.SizeInBytes = sizeof(XMFLOAT3) * vertices.size();		// バッファのサイズ
+	_vertexBufferView.StrideInBytes = sizeof(XMFLOAT3);		// 1頂点当たりのバイト数
 }
