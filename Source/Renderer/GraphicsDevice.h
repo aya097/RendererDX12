@@ -8,6 +8,7 @@ public:
 	void BeginRender();
 	void EndRender();
 	void SetBackGroundColor(const std::array<float, 4> &color);
+	ID3D12Device9* GetDevice() const { return _device.Get(); }
 
 private:
 	void CreateDevice();
