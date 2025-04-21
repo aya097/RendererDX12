@@ -3,8 +3,8 @@
 class RTVHeap
 {
 public:
-	RTVHeap(ID3D12Device* device, int useNum);
-	void RegistRTVHeap(ID3D12Resource* buffer, int index);
+	RTVHeap(ID3D12Device* device, int useNum);	// ƒq[ƒv‚ğ¶¬
+	void RegistRTVHeap(ID3D12Resource* buffer, int index);	// ƒq[ƒv‚É•R‚Ã‚¯
 	D3D12_CPU_DESCRIPTOR_HANDLE GetCPUHandleAt(int index);
 
 private:
