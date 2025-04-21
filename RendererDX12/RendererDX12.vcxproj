@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\main.cpp" />
+    <ClCompile Include="..\Source\Model\Mesh.cpp" />
     <ClCompile Include="..\Source\Pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pch.h</PrecompiledHeaderFile>
@@ -30,6 +31,7 @@
     <ClCompile Include="..\Source\Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\Model\Mesh.h" />
     <ClInclude Include="..\Source\Pch.h" />
     <ClInclude Include="..\Source\Renderer\GraphicsDevice.h" />
     <ClInclude Include="..\Source\Renderer\Heap\RTVHeap.h" />
