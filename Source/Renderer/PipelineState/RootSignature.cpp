@@ -28,4 +28,6 @@ RootSignature::RootSignature()
 	{
 		assert(false && "Create RootSignature is failed");
 	}
+
+	rootBlob->Release();
 }
