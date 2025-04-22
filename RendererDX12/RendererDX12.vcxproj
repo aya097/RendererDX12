@@ -27,6 +27,7 @@
     </ClCompile>
     <ClCompile Include="..\Source\Renderer\GraphicsDevice.cpp" />
     <ClCompile Include="..\Source\Renderer\Heap\RTVHeap.cpp" />
+    <ClCompile Include="..\Source\Renderer\PipelineState\RootSignature.cpp" />
     <ClCompile Include="..\Source\Scene\Scene.cpp" />
     <ClCompile Include="..\Source\Window\Window.cpp" />
   </ItemGroup>
@@ -35,6 +36,7 @@
     <ClInclude Include="..\Source\Pch.h" />
     <ClInclude Include="..\Source\Renderer\GraphicsDevice.h" />
     <ClInclude Include="..\Source\Renderer\Heap\RTVHeap.h" />
+    <ClInclude Include="..\Source\Renderer\PipelineState\RootSignature.h" />
     <ClInclude Include="..\Source\Scene\Scene.h" />
     <ClInclude Include="..\Source\Window\Window.h" />
   </ItemGroup>

@@ -16,6 +16,15 @@
     <Filter Include="Source\Renderer\Heap">
       <UniqueIdentifier>{963bcfd9-912a-4e8a-9461-e7a25171cf80}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Model">
+      <UniqueIdentifier>{ccb06f7d-acb3-46e8-b607-bc798a048bb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Scene">
+      <UniqueIdentifier>{c3b82751-5a95-4f6d-8b1f-ded1bc67981d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Renderer\PipelineState">
+      <UniqueIdentifier>{b6bef4ae-6297-48f4-8d5c-6c36f138a658}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\main.cpp">
@@ -33,6 +42,15 @@
     <ClCompile Include="..\Source\Renderer\Heap\RTVHeap.cpp">
       <Filter>Source\Renderer\Heap</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Model\Mesh.cpp">
+      <Filter>Source\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Scene\Scene.cpp">
+      <Filter>Source\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\Renderer\PipelineState\RootSignature.cpp">
+      <Filter>Source\Renderer\PipelineState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\Window\Window.h">
@@ -46,6 +64,15 @@
     </ClInclude>
     <ClInclude Include="..\Source\Renderer\Heap\RTVHeap.h">
       <Filter>Source\Renderer\Heap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Model\Mesh.h">
+      <Filter>Source\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Scene\Scene.h">
+      <Filter>Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Renderer\PipelineState\RootSignature.h">
+      <Filter>Source\Renderer\PipelineState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -11,7 +11,7 @@ void Scene::Init()
 		{0.7f, -0.8f, 0.0f},
 	};
 	_meshes.push_back(std::make_shared<Mesh>(vertices));
-
+	RootSignature* rootSignature =  new RootSignature();
 }
 
 void Scene::Update()
