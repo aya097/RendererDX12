@@ -52,6 +52,8 @@ void Scene::Draw()
 
 	// 頂点情報セット
 	D3D12_VERTEX_BUFFER_VIEW vbView = _meshes[0]->GetVertexBufferView();
+	D3D12_INDEX_BUFFER_VIEW ibView = _meshes[0]->GetIndexBufferView();
 	g_GraphicsDevice->GetCommandList()->IASetVertexBuffers(0, 1, &vbView);
-	g_GraphicsDevice->GetCommandList()->DrawInstanced(3, 1, 0, 0);
+	g_GraphicsDevice->GetCommandList()->IASetIndexBuffer(&ibView);
+	g_GraphicsDevice->GetCommandList()->DrawIndexedInstanced(6, 1, 0, 0, 0);
 }
