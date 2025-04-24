@@ -1,6 +1,6 @@
 #include "Mesh.h"
 
-Mesh::Mesh(const std::vector<XMFLOAT3>& vertices)
+Mesh::Mesh(const std::vector<XMFLOAT3>& vertices, const std::vector<uint16_t>& indices)
 {
 	// ヒーププロパティ設定
 	D3D12_HEAP_PROPERTIES heapProp = {};
@@ -28,7 +28,8 @@ Mesh::Mesh(const std::vector<XMFLOAT3>& vertices)
 		&resourceDesc,
 		D3D12_RESOURCE_STATE_GENERIC_READ,
 		nullptr,
-		IID_PPV_ARGS(&_vertexBuffer));
+		IID_PPV_ARGS(&_vertexBuffer)
+	);
 
 	if (FAILED(result))
 	{
@@ -57,4 +58,41 @@ Mesh::Mesh(const std::vector<XMFLOAT3>& vertices)
 	_vertexBufferView.BufferLocation = _vertexBuffer->GetGPUVirtualAddress();	// バッファの仮想アドレス
 	_vertexBufferView.SizeInBytes = sizeof(XMFLOAT3) * vertices.size();		// バッファのサイズ
 	_vertexBufferView.StrideInBytes = sizeof(XMFLOAT3);		// 1頂点当たりのバイト数
+
+	// インデックスバッファ生成
+	resourceDesc.Width = sizeof(indices[0]) * indices.size();
+	result = g_GraphicsDevice->GetDevice()->CreateCommittedResource(
+		&heapProp,	// ヒープ設定
+		D3D12_HEAP_FLAG_NONE,
+		&resourceDesc,
+		D3D12_RESOURCE_STATE_GENERIC_READ,
+		nullptr,
+		IID_PPV_ARGS(&_indexBuffer)
+	);
+
+	if (FAILED(result))
+	{
+		assert(false && "Create index buffer is failed");
+	}
+
+	// インデックスバッファをマップ
+	uint16_t* indMap = nullptr;
+	result = _indexBuffer->Map(
+		0,
+		nullptr,
+		(void**)&indMap
+	);
+
+	if (FAILED(result))
+	{
+		assert(false && "Map index buffer is failed");
+	}
+
+	std::copy(std::begin(indices), std::end(indices), indMap);
+	_indexBuffer->Unmap(0, nullptr);
+
+	// インデックスビュー
+	_indexBufferView.BufferLocation = _indexBuffer->GetGPUVirtualAddress();
+	_indexBufferView.Format = DXGI_FORMAT_R16_UINT;
+	_indexBufferView.SizeInBytes = sizeof(indices[0]) * indices.size();
 }

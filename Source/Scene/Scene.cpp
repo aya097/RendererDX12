@@ -7,12 +7,19 @@ void Scene::Init()
 	// メッシュの頂点
 	std::vector<XMFLOAT3> vertices =
 	{
-		{-0.7f, -0.9f, 0.0f},
-		{-0.5f, 0.8f, 0.0f},
-		{0.7f, -0.8f, 0.0f},
+		{-0.4f, -0.7f, 0.0f},
+		{-0.4f, 0.7f, 0.0f},
+		{0.4f, -0.7f, 0.0f},
+		{0.4f, 0.7f, 0.0f},
 	};
+	// インデックス
+	std::vector<uint16_t> indices = {
+		0,1,2,
+		2,1,3
+	};
+
 	// メッシュの追加
-	_meshes.push_back(std::make_shared<Mesh>(vertices));
+	_meshes.push_back(std::make_shared<Mesh>(vertices, indices));
 	
 	// ルートシグネチャ作成
 	_rootSignature = std::make_shared<RootSignature>();
