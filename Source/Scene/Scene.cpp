@@ -15,7 +15,7 @@ void Scene::Init()
 	_meshes.push_back(std::make_shared<Mesh>(vertices));
 	
 	// ルートシグネチャ作成
-	std::shared_ptr<RootSignature> rootSignature = std::make_shared<RootSignature>();
+	_rootSignature = std::make_shared<RootSignature>();
 	
 	// シェーダー作成
 	std::shared_ptr<ShaderData> shaderData = std::make_shared<ShaderData>();
@@ -23,7 +23,7 @@ void Scene::Init()
 	shaderData->SetShader(L"BasicPixelShader.hlsl", ShaderType::PS);
 	
 	// パイプラインステート作成
-	std::unique_ptr<PipelineState> pipelineState = std::make_unique<PipelineState>(rootSignature,shaderData);
+	_pipelineState = std::make_shared<PipelineState>(_rootSignature,shaderData);
 
 }
 
@@ -34,5 +34,17 @@ void Scene::Update()
 
 void Scene::Draw()
 {
+	// パイプラインステートセット
+	g_GraphicsDevice->GetCommandList()->SetPipelineState(_pipelineState->GetPipelineState());
 
+	// ルートシグネチャセット
+	g_GraphicsDevice->GetCommandList()->SetGraphicsRootSignature(_rootSignature->GetRootSignature());
+
+	// トポロジーセット
+	g_GraphicsDevice->GetCommandList()->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+	// 頂点情報セット
+	D3D12_VERTEX_BUFFER_VIEW vbView = _meshes[0]->GetVertexBufferView();
+	g_GraphicsDevice->GetCommandList()->IASetVertexBuffers(0, 1, &vbView);
+	g_GraphicsDevice->GetCommandList()->DrawInstanced(3, 1, 0, 0);
 }

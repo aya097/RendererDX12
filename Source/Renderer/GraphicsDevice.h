@@ -9,6 +9,7 @@ public:
 	void EndRender();
 	void SetBackGroundColor(const std::array<float, 4> &color);
 	ID3D12Device9* GetDevice() const { return _device.Get(); }
+	ID3D12GraphicsCommandList7* GetCommandList() const { return _commandList.Get(); }
 
 private:
 	void CreateDevice();
