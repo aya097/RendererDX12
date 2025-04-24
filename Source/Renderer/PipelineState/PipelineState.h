@@ -1,11 +1,6 @@
 #pragma once
-
-// シェーダの種類
-enum ShaderType
-{
-	VS,
-	PS,
-};
+#include "RootSignature.h"
+#include "ShaderData.h"
 
 /// <summary>
 /// パイプラインステートに関するクラス
@@ -13,5 +8,8 @@ enum ShaderType
 class PipelineState
 {
 public:
-	PipelineState();
+	PipelineState(std::shared_ptr<RootSignature> rootSignature, std::shared_ptr<ShaderData> shaderData);
+
+private:
+	ComPtr<ID3D12PipelineState> _pipelineState = nullptr;
 };

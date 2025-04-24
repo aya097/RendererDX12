@@ -2,6 +2,7 @@
 #include "../Model/Mesh.h"
 #include "../Renderer/PipelineState/RootSignature.h" 
 #include "../Renderer/PipelineState/ShaderData.h"
+#include "../Renderer/PipelineState/PipelineState.h"
 
 // オブジェクトの生成から描画までのフローを提供するクラス
 class Scene

@@ -4,18 +4,26 @@ Scene* g_Scene;
 
 void Scene::Init()
 {
+	// メッシュの頂点
 	std::vector<XMFLOAT3> vertices =
 	{
 		{-0.7f, -0.9f, 0.0f},
 		{-0.5f, 0.8f, 0.0f},
 		{0.7f, -0.8f, 0.0f},
 	};
+	// メッシュの追加
 	_meshes.push_back(std::make_shared<Mesh>(vertices));
-	std::unique_ptr<RootSignature> rootSignature = std::make_unique<RootSignature>();
-	std::unique_ptr<ShaderData> shaderData = std::make_unique<ShaderData>();
+	
+	// ルートシグネチャ作成
+	std::shared_ptr<RootSignature> rootSignature = std::make_shared<RootSignature>();
+	
+	// シェーダー作成
+	std::shared_ptr<ShaderData> shaderData = std::make_shared<ShaderData>();
 	shaderData->SetShader(L"BasicVertexShader.hlsl", ShaderType::VS);
-	auto a = shaderData->GetShader(ShaderType::PS);
-
+	shaderData->SetShader(L"BasicPixelShader.hlsl", ShaderType::PS);
+	
+	// パイプラインステート作成
+	std::unique_ptr<PipelineState> pipelineState = std::make_unique<PipelineState>(rootSignature,shaderData);
 
 }
 
