@@ -8,6 +8,9 @@
 #include <array>
 #include <vector>
 #include <wrl.h>
+#include <map>
+#include <unordered_map>
+
 
 using Microsoft::WRL::ComPtr;
 

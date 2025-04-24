@@ -25,6 +25,9 @@
     <Filter Include="Source\Renderer\PipelineState">
       <UniqueIdentifier>{b6bef4ae-6297-48f4-8d5c-6c36f138a658}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Asset\Shader">
+      <UniqueIdentifier>{39d100c4-5102-44c4-a7d8-82edffc7bc66}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\main.cpp">
@@ -86,5 +89,13 @@
     <ClInclude Include="..\Source\Renderer\PipelineState\ShaderData.h">
       <Filter>Source\Renderer\PipelineState</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\Asset\Shader\BasicPixelShader.hlsl">
+      <Filter>Asset\Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Asset\Shader\BasicVertexShader.hlsl">
+      <Filter>Asset\Shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
