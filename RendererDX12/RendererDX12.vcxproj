@@ -27,6 +27,9 @@
     </ClCompile>
     <ClCompile Include="..\Source\Renderer\GraphicsDevice.cpp" />
     <ClCompile Include="..\Source\Renderer\Heap\RTVHeap.cpp" />
+    <ClCompile Include="..\Source\Renderer\PipelineState\PipelineState.cpp" />
+    <ClCompile Include="..\Source\Renderer\PipelineState\RootSignature.cpp" />
+    <ClCompile Include="..\Source\Renderer\PipelineState\ShaderData.cpp" />
     <ClCompile Include="..\Source\Scene\Scene.cpp" />
     <ClCompile Include="..\Source\Window\Window.cpp" />
   </ItemGroup>
@@ -35,8 +38,27 @@
     <ClInclude Include="..\Source\Pch.h" />
     <ClInclude Include="..\Source\Renderer\GraphicsDevice.h" />
     <ClInclude Include="..\Source\Renderer\Heap\RTVHeap.h" />
+    <ClInclude Include="..\Source\Renderer\PipelineState\PipelineState.h" />
+    <ClInclude Include="..\Source\Renderer\PipelineState\RootSignature.h" />
+    <ClInclude Include="..\Source\Renderer\PipelineState\ShaderData.h" />
     <ClInclude Include="..\Source\Scene\Scene.h" />
     <ClInclude Include="..\Source\Window\Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\Asset\Shader\BasicPixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="..\Asset\Shader\BasicVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -128,11 +150,15 @@
       <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>Pch.h</ForcedIncludeFiles>
       <AdditionalIncludeDirectories>.\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+    </FxCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
