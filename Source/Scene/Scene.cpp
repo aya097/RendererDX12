@@ -11,7 +11,10 @@ void Scene::Init()
 		{0.7f, -0.8f, 0.0f},
 	};
 	_meshes.push_back(std::make_shared<Mesh>(vertices));
-	RootSignature* rootSignature =  new RootSignature();
+	std::unique_ptr<RootSignature> rootSignature = std::make_unique<RootSignature>();
+	std::unique_ptr<ShaderData> shaderData = std::make_unique<ShaderData>();
+
+
 }
 
 void Scene::Update()

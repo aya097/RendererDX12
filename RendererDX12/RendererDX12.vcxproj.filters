@@ -54,6 +54,9 @@
     <ClCompile Include="..\Source\Renderer\PipelineState\PipelineState.cpp">
       <Filter>Source\Renderer\PipelineState</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Renderer\PipelineState\ShaderData.cpp">
+      <Filter>Source\Renderer\PipelineState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\Window\Window.h">
@@ -78,6 +81,9 @@
       <Filter>Source\Renderer\PipelineState</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Renderer\PipelineState\PipelineState.h">
+      <Filter>Source\Renderer\PipelineState</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Renderer\PipelineState\ShaderData.h">
       <Filter>Source\Renderer\PipelineState</Filter>
     </ClInclude>
   </ItemGroup>
