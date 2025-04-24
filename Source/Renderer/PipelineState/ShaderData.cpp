@@ -50,7 +50,11 @@ void ShaderData::SetShader(std::wstring fileName, ShaderType shaderType, std::st
 
 ID3DBlob* ShaderData::GetShader(ShaderType shaderType) const
 {
-	return _shaderBlobs.at(shaderType);
+	if (_shaderBlobs.contains(shaderType))
+	{
+		return _shaderBlobs.at(shaderType);
+	}
+	return nullptr;
 }
 
 std::string ShaderData::GetShaderTarget(ShaderType shaderType)

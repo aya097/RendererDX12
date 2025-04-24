@@ -14,7 +14,7 @@ void Scene::Init()
 	std::unique_ptr<RootSignature> rootSignature = std::make_unique<RootSignature>();
 	std::unique_ptr<ShaderData> shaderData = std::make_unique<ShaderData>();
 	shaderData->SetShader(L"BasicVertexShader.hlsl", ShaderType::VS);
-	auto a = shaderData->GetShader(ShaderType::VS);
+	auto a = shaderData->GetShader(ShaderType::PS);
 
 
 }
